@@ -10,13 +10,13 @@ async def extract_car_plates_from_image(car_image: UploadFile):
     reader = easyocr.Reader(['ko', 'en'], )
     raw_car_plates_candidates = reader.readtext(car_image_file, detail=0)
 
-    car_plate_candidates = extract_car_plates_from_raw_value(raw_car_plates_candidates)
+    car_plate_candidates = _extract_car_plates_from_raw_value(raw_car_plates_candidates)
 
     print(f"car plate candidates : {car_plate_candidates}")
     return car_plate_candidates
 
 
-def extract_car_plates_from_raw_value(raw_car_plates):
+def _extract_car_plates_from_raw_value(raw_car_plates):
     raw_car_plates_join = "".join(raw_car_plates)
 
     filter_pattern = "[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]"
